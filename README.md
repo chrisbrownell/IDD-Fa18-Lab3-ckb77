@@ -4,9 +4,7 @@
 
 ## In The Report
 
-Include your responses to the bold questions on your own fork of [this lab report template](https://github.com/FAR-Lab/IDD-Fa18-Lab2). Include snippets of code that explain what you did. Deliverables are due next Tuesday. Post your lab reports as README.md pages on your GitHub, and post a link to that on your main class hub page.
-
-For this lab, we will be experimenting with a variety of sensors, sending the data to the Arduino serial monitor, writing data to the EEPROM of the Arduino, and then playing the data back.
+In this lab, I experiment with a variety of sensors, sending the data to the Arduino serial monitor, writing data to the EEPROM of the Arduino, and then playing the data back. I also develop a ___ in part D.
 
 ## Part A.  Writing to the Serial Monitor
  
@@ -32,7 +30,13 @@ INSEERT PHOTO
 
 **a. What voltage values do you see from your force sensor?**
 
+The voltage values appear to vary between 0V when no pressure is applied, to the close to the full 5V. On a 0 to 1023 scale, 
+I am able to get readings between 0 and 1003. A reading of 1003 implies 1003/1023 = 0.98 of the full voltage, or 4.9V.
+
 **b. What kind of relationship does the voltage have as a function of the force applied? (e.g., linear?)**
+
+The relationship does not appear to be linear, because I need to apply much more incremental force to go from a reading 
+of 1000 to 10003 than I do from 0 to 3. It appears to be more of a logarithmic relationship than a linear one.
 
 **c. Can you change the LED fading code values so that you get the full range of output voltages from the LED when using your FSR?**
 
