@@ -74,7 +74,7 @@ void loop() {
 
 **d. What resistance do you need to have in series to get a reasonable range of voltages from each sensor?**
 
-
+Light - 242 to 1012 with 10K resistance
 
 **e. What kind of relationship does the resistance have as a function of stimulus? (e.g., linear?)**
 
