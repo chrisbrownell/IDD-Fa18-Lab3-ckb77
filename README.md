@@ -33,6 +33,9 @@ INSEERT PHOTO
 The voltage values appear to vary between 0V when no pressure is applied, to the close to the full 5V. On a 0 to 1023 scale, 
 I am able to get readings between 0 and 1003. A reading of 1003 implies 1003/1023 = 0.98 of the full voltage, or 4.9V.
 
+When I connect the sensor to 3.3V rather than 5V, I only see a range of 0 to 672, which suggests voltage ranges from 0V to 
+672/1023 = 3.28V. This makes sense intuitively.
+
 **b. What kind of relationship does the voltage have as a function of the force applied? (e.g., linear?)**
 
 The relationship does not appear to be linear, because I need to apply much more incremental force to go from a reading 
@@ -40,9 +43,41 @@ of 1000 to 10003 than I do from 0 to 3. It appears to be more of a logarithmic r
 
 **c. Can you change the LED fading code values so that you get the full range of output voltages from the LED when using your FSR?**
 
+See video [here](https://drive.google.com/file/d/1VJvWMkfe41nntwT4KAUbKrI_rIroknbg/view?usp=sharing).
+
+I used the map function to map the FSR values (range: 0-1023) to a new range of 0-255 and also print the value to serial
+monitor just as a gut check.
+
+```
+int led = 9;           // the PWM pin the LED is attached to
+int brightness = 0;    // how bright the LED is
+
+// the setup routine runs once when you press reset:
+void setup() {
+  // declare pin 9 to be an output:
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+}
+
+// the loop routine runs over and over again forever:
+void loop() {
+  // set the brightness of pin 9:
+  brightness = map(analogRead(A0),0,1023,0,255);
+  Serial.println(map(analogRead(A0),0,1023,0,255));
+  analogWrite(led, brightness);
+
+  // wait for 30 milliseconds to see the dimming effect
+  delay(30);
+}
+```
+
 **d. What resistance do you need to have in series to get a reasonable range of voltages from each sensor?**
 
+
+
 **e. What kind of relationship does the resistance have as a function of stimulus? (e.g., linear?)**
+
+
 
 ### 2. Accelerometer
  
