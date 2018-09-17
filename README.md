@@ -14,6 +14,7 @@ Values range from 0 to 1023.
  
 **b. How many bits of resolution does the analog to digital converter (ADC) on the Arduino have?**
 
+It appears to have 10-bit resolution, since 2^10 = 1024.
 
 
 ## Part B. RGB LED
@@ -22,7 +23,7 @@ Values range from 0 to 1023.
 
 I used the 220 ohm resistors to connect each of the cathode pins into Arduino pins 7, 8, and 9. See photo below. I also included the 10K potentiometer between power and the common anode so that I could vary the brightness of the LED:
 
-INSEERT PHOTO
+![rgbsetup](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/RGB_setup.JPG)
 
 ## Part C. Voltage Varying Sensors 
  
