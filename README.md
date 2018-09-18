@@ -158,6 +158,7 @@ the next state change.
 1024
 
 **d. How would you get analog data from the Arduino analog pins to be byte-sized? How about analog data from the I2C devices?**
+
 I could either scale the data to be from 0 to 255 using a map function, or I could split the data across multiple bytes in some sort of clever way such that I could know on read where one piece of data ended and another began.
 
 **e. Alternately, how would we store the data if it were bigger than a byte? (hint: take a look at the [EEPROMPut](https://www.arduino.cc/en/Reference/EEPROMPut) example)**
@@ -167,7 +168,7 @@ we can read this data using EEPROM.get().
 
 **Upload your modified code that takes in analog values from your sensors and prints them back out to the Arduino Serial Monitor.**
 
-Read in analog values from softpot and print them back out from EEPROM whenever max value (1023) is recorded - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-ReadWriteEEPROM.ino)
+Read analog values from softpot and print them back from EEPROM when max value (1023) is hit - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-ReadWriteEEPROM.ino)
 
 ### 2. Design your logger
  
