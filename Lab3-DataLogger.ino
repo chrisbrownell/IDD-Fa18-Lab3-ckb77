@@ -1,5 +1,6 @@
 /*
-  Modified state machine to measure and store softpot readings in EEPROM
+  Modified state machine to measure and store softpot readings in EEPROM and play
+  back via speaker when invoked by user.
  
   Modified from State Machine 2 by Wendy Ju
  
