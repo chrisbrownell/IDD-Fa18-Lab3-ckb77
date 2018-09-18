@@ -74,8 +74,8 @@ void loop() {
 
 **d. What resistance do you need to have in series to get a reasonable range of voltages from each sensor?**
 
-Light Sensor: I can vary from a reading of 39 (as dark as I can make it) to 1018 (as bright as I can make it) with 10K
-resistance. This is more than enough variation to do what I'd need to do, especially mapping to 0-255.
+Light Sensor: I can vary from an AnalogRead reading of 39 (as dark as I can make it) to 1018 (as bright as I can make it) 
+with 10K resistance. This is more than enough variation to do what I'd need to do, especially mapping to 0-255.
 
 Flex/Bend Sensor: I can vary from a reading of 39 (bent as much as I can in one direction) to 313 (bent as much as I can in
 the other direction) with a baseline of around 123 (straight up-and-down). If I connect 3x 220 ohm resistors in series 
@@ -88,28 +88,55 @@ of the analog input.
 
 **e. What kind of relationship does the resistance have as a function of stimulus? (e.g., linear?)**
 
-Light Sensor: It is hard to tell but it seems to be close to linear
+Light Sensor: It is hard to tell but it seems to be close to linear.
 
-Flex/Bend Sensor: This one is weird because variations seem to become harder to achieve at both extremes. The resistance 
+Flex/Bend Sensor: Variations seem to become harder to achieve at both extremes. The resistance 
 changes most easily when the sensor is close to straight up-and-down, but the further in either direction the sensor is bent,
 the more stimulus is needed to cause a resistance change.
 
 Softpot: This one seems to be pretty linear. When I put my finger halfway down, it holds at about 460, which is 55% of the way 
 to 0. So if it's not perfectly linear it might be a bit concave.
 
+Softpot serial plotter in action - [video](https://drive.google.com/file/d/1YwkO-CIiTRgF0K4qpojzfgglwEhIAIvG/view?usp=sharing)
+
 ### 2. Accelerometer
  
 **a. Include your accelerometer read-out code in your write-up.**
+
+1. Accelerometer print-out to LCD - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-Accelerometer.ino)
+
+2. Accelerometer print-out to LCD with RGB - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-Accelerometer-RGB.ino)
+
+3. Acclerometer with LCD and RGB LED feedback - [video](https://drive.google.com/file/d/1ewtdWbrdyMBcNkMiIuXRPUc36zB2C2_O/view?usp=sharing)
 
 ### 3. IR Proximity Sensor
 
 **a. Describe the voltage change over the sensing range of the sensor. A sketch of voltage vs. distance would work also. Does it match up with what you expect from the datasheet?**
 
+For proximity, the relationship is definitely not linear. When I place a sheet of paper at the following distances, I get the
+following readings:
+
+0 cm: 65536
+1cm: ~40000
+2cm: ~12000
+3cm: ~5000
+4cm: ~4000
+
+This matches up with the Adafruit instruction page, which states "both are unitless, it isn't like the proximity is in
+millimeters or inches, its just higher the closer you are". However if I am being honest, I don't know that I could have 
+figured this out from the datasheet alone.
+
+
 **b. Upload your merged code to your lab report repository and link to it here.**
+
+1. Accelerometer + RGB + IR Proximity - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-Accelerometer-RGB-IR.ino)
+2. Accelerometer + RGB + IR Proximity - [video](https://drive.google.com/file/d/1luaUxjdHCsXu6CFJuiFfRAYWThEa37Gb/view?usp=sharing)
 
 ## Optional. Graphic Display
 
 **Take a picture of your screen working insert it here!**
+
+I want to do this but don't have time! Really wanted it for part D. May come back to it later this week.
 
 ## Part D. Logging values to the EEPROM and reading them back
  
@@ -117,15 +144,28 @@ to 0. So if it's not perfectly linear it might be a bit concave.
 
 **a. Does it matter what actions are assigned to which state? Why?**
 
+It matters insofar as you want the order of operations to be such that you know when you are reading from EEPROM vs. writing to EEPROM vs. clearing EEPROM. I used a softpot for my state changer so by default when I have no finger on the softpot, I start in state 0 and clear EEPROM. Then as I move from low to high, I enter state 1 (read) then state 2 (write). It might make more sense for me to write then read (i.e. swap the actions from state 1 and 2) so that I don't waste a read action immediately after I clear the EEPROM every time. 
+
 **b. Why is the code here all in the setup() functions and not in the loop() functions?**
+
+We only want the code to run once when there is a state change. If we put it in the loop, it would run continuously until 
+the next state change.
 
 **c. How many byte-sized data samples can you store on the Atmega328?**
 
+1024
+
 **d. How would you get analog data from the Arduino analog pins to be byte-sized? How about analog data from the I2C devices?**
+I could either scale the data to be from 0 to 255 using a map function, or I could split the data across multiple bytes in some sort of clever way such that I could know on read where one piece of data ended and another began.
 
 **e. Alternately, how would we store the data if it were bigger than a byte? (hint: take a look at the [EEPROMPut](https://www.arduino.cc/en/Reference/EEPROMPut) example)**
 
+We can store other primitive data types using EEPROM.put() and/or we can store custom structs using EEPROM.put(). From there
+we can read this data using EEPROM.get().
+
 **Upload your modified code that takes in analog values from your sensors and prints them back out to the Arduino Serial Monitor.**
+
+Read in analog values from softpot and print them back out from EEPROM whenever max value (1023) is recorded - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-ReadWriteEEPROM.ino)
 
 ### 2. Design your logger
  
