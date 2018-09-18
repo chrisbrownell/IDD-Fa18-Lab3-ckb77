@@ -74,11 +74,28 @@ void loop() {
 
 **d. What resistance do you need to have in series to get a reasonable range of voltages from each sensor?**
 
-Light - 242 to 1012 with 10K resistance
+Light Sensor: I can vary from a reading of 39 (as dark as I can make it) to 1018 (as bright as I can make it) with 10K
+resistance. This is more than enough variation to do what I'd need to do, especially mapping to 0-255.
+
+Flex/Bend Sensor: I can vary from a reading of 39 (bent as much as I can in one direction) to 313 (bent as much as I can in
+the other direction) with a baseline of around 123 (straight up-and-down). If I connect 3x 220 ohm resistors in series 
+(660 ohm total resistance) the readings vary from 1 to 27 which is not nearly as much. If I connect a 10K and a 220 ohm 
+resistor in series (10.2K total resistance) the readings vary from 22 to 298 which is basically the same as the 10K. So 
+it seems given the resistors I have, 10K might provide a reasonable range.
+
+Softpot: I can vary from a reading of 0 to 1023 when connected with a 10K pull-down resistor which is the full expected range
+of the analog input.
 
 **e. What kind of relationship does the resistance have as a function of stimulus? (e.g., linear?)**
 
+Light Sensor: It is hard to tell but it seems to be close to linear
 
+Flex/Bend Sensor: This one is weird because variations seem to become harder to achieve at both extremes. The resistance 
+changes most easily when the sensor is close to straight up-and-down, but the further in either direction the sensor is bent,
+the more stimulus is needed to cause a resistance change.
+
+Softpot: This one seems to be pretty linear. When I put my finger halfway down, it holds at about 460, which is 55% of the way 
+to 0. So if it's not perfectly linear it might be a bit concave.
 
 ### 2. Accelerometer
  
