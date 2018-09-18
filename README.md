@@ -174,6 +174,16 @@ Read analog values from softpot and print them back from EEPROM when max value (
  
 **a. Insert here a copy of your final state diagram.**
 
+For my data logger, there are 2 basic states. In state 0 ("RECORDING"), the system records a user's input notes on the softpot. The softpot is broken up into technically 4 notes, but for all intents and purposes, 3 notes (unless the user presses very hard on the far left end of the sensor).
+
+The duration and rhythm with which the user plays the softpot is stored in EEPROM and as soon as the user is finished recording and wants to play back the saved song, they simply press a button to exit state 0 and enter state 1 ("PLAYBACK"), during which the music is played back. When this is finished, the system enters state 0 again and the text on the LCD screen alerts the user that it is time to record again.
+
+![states](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/states.jpg)
+
 ### 3. Create your data logger!
  
 **a. Record and upload a short demo video of your logger in action.**
+
+Data logger - [sketch](https://github.com/chrisbrownell/IDD-Fa18-Lab3-ckb77/blob/master/Lab3-DataLogger.ino)
+
+Data logger - [video](https://drive.google.com/file/d/1WbLxWgf-SRkWRNXG9no7CDxXLxxHrIg-/view?usp=sharing)
