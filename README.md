@@ -4,7 +4,7 @@
 
 ## In The Report
 
-In this lab, I experiment with a variety of sensors, sending the data to the Arduino serial monitor, writing data to the EEPROM of the Arduino, and then playing the data back. I also develop a ___ in part D.
+In this lab, I experiment with a variety of sensors, sending the data to the Arduino serial monitor, writing data to the EEPROM of the Arduino, and then playing the data back. I also develop a music recording machine that supports composition and playback at the third-grade-band-level in part D.
 
 ## Part A.  Writing to the Serial Monitor
  
