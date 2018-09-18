@@ -1,5 +1,6 @@
 // Basic demo for accelerometer readings from Adafruit LIS3DH
 // Plus: RGB LED variation based on accelerometer readings
+// Plus: IR proximity sensor
 
 #include <Wire.h>
 #include <SPI.h>
