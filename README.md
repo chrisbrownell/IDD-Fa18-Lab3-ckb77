@@ -116,11 +116,13 @@ Softpot serial plotter in action - [video](https://drive.google.com/file/d/1YwkO
 For proximity, the relationship is definitely not linear. When I place a sheet of paper at the following distances, I get the
 following readings:
 
+```
 0 cm: 65536
 1cm: ~40000
 2cm: ~12000
 3cm: ~5000
 4cm: ~4000
+```
 
 This matches up with the Adafruit instruction page, which states "both are unitless, it isn't like the proximity is in
 millimeters or inches, its just higher the closer you are". However if I am being honest, I don't know that I could have 
